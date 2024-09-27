@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>密码学原理 | 田宇的博客</title><meta name="author" content="田宇"><meta name="copyright" content="田宇"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="大二上学期张渊老师《密码学原理》课程笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="密码学原理">
+<meta property="og:url" content="http://example.com/2024/09/19/%E5%AF%86%E7%A0%81%E5%AD%A6/index.html">
+<meta property="og:site_name" content="田宇的博客">
+<meta property="og:description" content="大二上学期张渊老师《密码学原理》课程笔记。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/boy.jpg">
+<meta property="article:published_time" content="2024-09-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-26T03:13:02.788Z">
+<meta property="article:author" content="田宇">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/boy.jpg"><link rel="shortcut icon" href="/img/blog1.png"><link rel="canonical" href="http://example.com/2024/09/19/%E5%AF%86%E7%A0%81%E5%AD%A6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '密码学原理',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-09-26 11:13:02'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/boy.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/picture4.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="田宇的博客"><span class="site-name">田宇的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">密码学原理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-09-18T16:00:00.000Z" title="发表于 2024-09-19 00:00:00">2024-09-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-09-26T03:13:02.788Z" title="更新于 2024-09-26 11:13:02">2024-09-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="密码学原理"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="密码学原理"><a href="#密码学原理" class="headerlink" title="密码学原理"></a>密码学原理</h1><hr>
+<h2 id="Lecture-1"><a href="#Lecture-1" class="headerlink" title="Lecture 1"></a>Lecture 1</h2><ul>
+<li>Overview</li>
+<li>Classic cipher: 凯撒密码，弗吉尼亚密码，单字母替换密码</li>
+<li>现代密码与古代密码的比较</li>
+<li>科克霍夫原理：安全性不应该依赖于加密的方法（别人总会知道你加密的方法），而应该依赖于密匙。</li>
+</ul>
+<h2 id="Lecture-2"><a href="#Lecture-2" class="headerlink" title="Lecture 2"></a>Lecture 2</h2><p>一些高中概率知识的复习（古典概率，条件概率，贝叶斯概率）</p>
+<h3 id="perfect-secrecy（完美保密性）"><a href="#perfect-secrecy（完美保密性）" class="headerlink" title="perfect secrecy（完美保密性）"></a>perfect secrecy（完美保密性）</h3><h4 id="如何定义一个密码范式？（encryption-scheme）"><a href="#如何定义一个密码范式？（encryption-scheme）" class="headerlink" title="如何定义一个密码范式？（encryption scheme）"></a>如何定义一个密码范式？（encryption scheme）</h4><ul>
+<li>Gen：k ← Gen（一个产生密匙k的概率算法）</li>
+<li>Enc：一个根据密匙k生成密文c的算法</li>
+<li>Dec：一个输入密文和密匙并算出明文的方法</li>
+</ul>
+<h4 id="完美保密性概念"><a href="#完美保密性概念" class="headerlink" title="完美保密性概念"></a>完美保密性概念</h4><p>Pr[M &#x3D; m|C &#x3D; c] &#x3D; Pr[M &#x3D; m]：即在知道秘闻后的条件概率与知道前没有区别。</p>
+<p>等价形式：Pr[C &#x3D; c|M &#x3D; m] &#x3D; Pr[C &#x3D; c|M &#x3D; m].</p>
+<p>之后讲述了以上两者等价的证明。</p>
+<h4 id="完美不可区分性（perfect-adversarial-indistinguishable）"><a href="#完美不可区分性（perfect-adversarial-indistinguishable）" class="headerlink" title="完美不可区分性（perfect adversarial indistinguishable）"></a>完美不可区分性（perfect adversarial indistinguishable）</h4><p>在一个实验中，adversary从所有明文空间中挑两个然后给加密者，加密者随机等概率加密一个明文并将其返回给adversary。如果adversary猜出此密文所对应明文正确的概率为0.5，则称为完美不可区分性。</p>
+<p>完美不可区分性和完美保密性等价（作业：证明！）</p>
+<p>证明弗吉尼亚密码不符合完美保密性。</p>
+<h4 id="The-One-Time-Pad（OTP）"><a href="#The-One-Time-Pad（OTP）" class="headerlink" title="The One-Time Pad（OTP）"></a>The One-Time Pad（OTP）</h4><p>异或运算可以模拟二进制加法。</p>
+<p>该范式内容如下：明文为一串二进制码，同时生成密匙（长度必须与明文的长度相同），并对二者进行异或运算，得出密文。同时，将密文与密匙再次做异或运算，可以得到明文。</p>
+<p>局限性：</p>
+<ul>
+<li>密匙必须与明文长度相同</li>
+<li>相同的密匙只能用一次才能保证安全</li>
+<li>只能防御密文攻击（如获取了明文那这个方法就废了）</li>
+</ul>
+<h4 id="完美保密性的缺陷"><a href="#完美保密性的缺陷" class="headerlink" title="完美保密性的缺陷"></a>完美保密性的缺陷</h4><p>Let (Gen,Enc,Dec) be a perfectly-secret encryption scheme over a message space M, and let K be the key space as determined by Gen.</p>
+<p>Then |K| ≥ |M|，即密匙的空间必须大于等于明文的空间。</p>
+<h4 id="香农理论（Shannon-‘s-Theorem）"><a href="#香农理论（Shannon-‘s-Theorem）" class="headerlink" title="香农理论（Shannon ‘s Theorem）"></a>香农理论（Shannon ‘s Theorem）</h4><h2 id="Lecture-3-计算保密性（Computational-Security）"><a href="#Lecture-3-计算保密性（Computational-Security）" class="headerlink" title="Lecture 3 计算保密性（Computational Security）"></a>Lecture 3 计算保密性（Computational Security）</h2><p>相对于完美保密性，计算保密性的要求降低一步。</p>
+<h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><p>Computationally Secure: Efficient adversaries have the information, and can potentially succeed with some very small probability.</p>
+<p>意思是说，也许“有效的”对手可以花费100亿年来破译这个密码，但这样仍然可以成为符合计算保密性。</p>
+<h3 id="计算安全性：A-parameterized-security"><a href="#计算安全性：A-parameterized-security" class="headerlink" title="计算安全性：A parameterized security"></a>计算安全性：A parameterized security</h3><p>通常计算安全性与密钥的长度有关，同时密钥长度的可变提高了密码的灵活性，同时可以根据实际情况降低密码成本。</p>
+<h3 id="Efficient-adversary"><a href="#Efficient-adversary" class="headerlink" title="Efficient adversary"></a>Efficient adversary</h3><p>Efficient adversaries &#x3D; Randomized algorithms + Polynomial-time bounded &#x3D; Probabilistic Polynomial-Time (bounded) algorithms &#x3D; PPT algorithms</p>
+<p>即任意现存可行的算法加上多项式的时间复杂度。</p>
+<h3 id="可忽略函数"><a href="#可忽略函数" class="headerlink" title="可忽略函数"></a>可忽略函数</h3><p>超多项式函数（superpolynomial）：级数大于多项式的函数。<br>可忽略（negligible）函数：超多项式函数的倒数。negl(n).</p>
+<p>规律：</p>
+<ul>
+<li>两个可忽略函数相加仍为可忽略函数</li>
+<li>可忽略函数乘多项式函数也为可忽略函数(公式1)</li>
+</ul>
+<blockquote>
+<p>negligible possibility is safe!（原因见公式1）</p>
+</blockquote>
+<h3 id="The-asymptotic-definition-of-computational-security"><a href="#The-asymptotic-definition-of-computational-security" class="headerlink" title="The asymptotic definition of computational security"></a>The asymptotic definition of computational security</h3><p>A scheme is secure if for every PPT adversary A carrying out an attack of some formally specified type, the probability that A succeeds in the attack is negligible.</p>
+<p>negligible： for every positive polynomial p, there exists an integer N such that when n &gt; N, the probability that A succeeds in the attack is less than 1&#x2F;p(n)。</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/boy.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/09/12/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95%E5%AF%BC%E8%AE%BA/" title="最优化方法导论"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">最优化方法导论</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/boy.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">田宇</div><div class="author-info__description">软工萌新一枚~</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/TianYu-2005"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/TianYu-2005" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:231870242@smail.nju.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">努力充实博客ing~ Email:231870242@smail.nju.edu.cn</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E5%AD%A6%E5%8E%9F%E7%90%86"><span class="toc-text">密码学原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lecture-1"><span class="toc-text">Lecture 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lecture-2"><span class="toc-text">Lecture 2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#perfect-secrecy%EF%BC%88%E5%AE%8C%E7%BE%8E%E4%BF%9D%E5%AF%86%E6%80%A7%EF%BC%89"><span class="toc-text">perfect secrecy（完美保密性）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E5%AF%86%E7%A0%81%E8%8C%83%E5%BC%8F%EF%BC%9F%EF%BC%88encryption-scheme%EF%BC%89"><span class="toc-text">如何定义一个密码范式？（encryption scheme）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%8C%E7%BE%8E%E4%BF%9D%E5%AF%86%E6%80%A7%E6%A6%82%E5%BF%B5"><span class="toc-text">完美保密性概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%8C%E7%BE%8E%E4%B8%8D%E5%8F%AF%E5%8C%BA%E5%88%86%E6%80%A7%EF%BC%88perfect-adversarial-indistinguishable%EF%BC%89"><span class="toc-text">完美不可区分性（perfect adversarial indistinguishable）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-One-Time-Pad%EF%BC%88OTP%EF%BC%89"><span class="toc-text">The One-Time Pad（OTP）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%8C%E7%BE%8E%E4%BF%9D%E5%AF%86%E6%80%A7%E7%9A%84%E7%BC%BA%E9%99%B7"><span class="toc-text">完美保密性的缺陷</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A6%99%E5%86%9C%E7%90%86%E8%AE%BA%EF%BC%88Shannon-%E2%80%98s-Theorem%EF%BC%89"><span class="toc-text">香农理论（Shannon ‘s Theorem）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lecture-3-%E8%AE%A1%E7%AE%97%E4%BF%9D%E5%AF%86%E6%80%A7%EF%BC%88Computational-Security%EF%BC%89"><span class="toc-text">Lecture 3 计算保密性（Computational Security）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A"><span class="toc-text">定义：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%9AA-parameterized-security"><span class="toc-text">计算安全性：A parameterized security</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Efficient-adversary"><span class="toc-text">Efficient adversary</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E5%BF%BD%E7%95%A5%E5%87%BD%E6%95%B0"><span class="toc-text">可忽略函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-asymptotic-definition-of-computational-security"><span class="toc-text">The asymptotic definition of computational security</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/19/%E5%AF%86%E7%A0%81%E5%AD%A6/" title="密码学原理">密码学原理</a><time datetime="2024-09-18T16:00:00.000Z" title="发表于 2024-09-19 00:00:00">2024-09-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/12/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95%E5%AF%BC%E8%AE%BA/" title="最优化方法导论">最优化方法导论</a><time datetime="2024-09-11T16:00:00.000Z" title="发表于 2024-09-12 00:00:00">2024-09-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/12/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90/" title="软件分析">软件分析</a><time datetime="2024-09-11T16:00:00.000Z" title="发表于 2024-09-12 00:00:00">2024-09-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="互联网计算">互联网计算</a><time datetime="2024-09-09T16:00:00.000Z" title="发表于 2024-09-10 00:00:00">2024-09-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" title="数据结构与算法">数据结构与算法</a><time datetime="2024-09-05T16:00:00.000Z" title="发表于 2024-09-06 00:00:00">2024-09-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By 田宇</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
